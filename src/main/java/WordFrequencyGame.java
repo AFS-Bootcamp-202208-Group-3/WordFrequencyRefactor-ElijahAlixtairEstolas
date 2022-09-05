@@ -3,9 +3,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringJoiner;
-import java.io.CharArrayWriter;
-
-import java.time.LocalDateTime;
 
 public class WordFrequencyGame {
     public String getResult(String inputStr){
@@ -23,21 +20,16 @@ public class WordFrequencyGame {
                 List<Input> inputList = generateInputStringList(arr);
 
                 //get the map for the next step of sizing the same word
-                Map<String, List<Input>> map =getListMap(inputList);
+                Map<String, List<Input>> map = getListMap(inputList);
 
-                List<Input> list = new ArrayList<>();
-                for (Map.Entry<String, List<Input>> entry : map.entrySet()){
-                    Input input = new Input(entry.getKey(), entry.getValue().size());
-                    list.add(input);
-                }
-                inputList = list;
+                inputList = getUniqueWords(map);
 
-                inputList.sort((w1, w2) -> w2.getWordCount() - w1.getWordCount());
+                inputList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
-                for (Input w : inputList) {
-                    String s = w.getValue() + " " +w.getWordCount();
-                    joiner.add(s);
+                for (Input word : inputList) {
+                    String wordAndCount = word.getValue() + " " +word.getWordCount();
+                    joiner.add(wordAndCount);
                 }
                 return joiner.toString();
             } catch (Exception e) {
@@ -46,6 +38,15 @@ public class WordFrequencyGame {
                 return "Calculate Error";
             }
         }
+    }
+
+    private static List<Input> getUniqueWords(Map<String, List<Input>> map) {
+        List<Input> list = new ArrayList<>();
+        for (Map.Entry<String, List<Input>> entry : map.entrySet()){
+            Input input = new Input(entry.getKey(), entry.getValue().size());
+            list.add(input);
+        }
+        return list;
     }
 
     private static List<Input> generateInputStringList(String[] arr) {
@@ -67,9 +68,9 @@ public class WordFrequencyGame {
         for (Input input :  inputList){
 //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
             if (!map.containsKey(input.getValue())){
-                ArrayList arr = new ArrayList<>();
-                arr.add(input);
-                map.put(input.getValue(), arr);
+                ArrayList inputArrayList = new ArrayList<>();
+                inputArrayList.add(input);
+                map.put(input.getValue(), inputArrayList);
             }
 
             else {
