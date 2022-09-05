@@ -9,10 +9,7 @@ public class WordFrequencyGame {
     public String getResult(String inputStr){
 
 
-        if (splitInputString(inputStr).length==1) {
-            return inputStr + " 1";
-        } else {
-
+        if (splitInputString(inputStr).length != 1) {
             try {
                 //split the input string with 1 to n pieces of spaces
                 return generateWordFrequencyString(getInputList(splitInputString(inputStr)));
@@ -20,6 +17,8 @@ public class WordFrequencyGame {
                 return "Calculate Error";
             }
         }
+
+        return inputStr + " 1";
     }
 
     private static String generateWordFrequencyString(List<Input> inputList) {
