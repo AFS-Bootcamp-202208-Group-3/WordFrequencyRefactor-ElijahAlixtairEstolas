@@ -12,7 +12,9 @@ public class WordFrequencyGame {
         if (splitInputString(inputStr).length != 1) {
             try {
                 //split the input string with 1 to n pieces of spaces
-                return generateWordFrequencyString(getInputList(splitInputString(inputStr)));
+                String[] inputArray = splitInputString(inputStr);
+                List<Input> inputList = getInputList(inputArray);
+                return generateWordFrequencyString(inputList);
             } catch (Exception e) {
                 return "Calculate Error";
             }
