@@ -1,3 +1,4 @@
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,14 +28,12 @@ public class WordFrequencyGame {
                 inputList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
-                for (Input word : inputList) {
-                    String wordAndCount = word.getValue() + " " +word.getWordCount();
-                    joiner.add(wordAndCount);
-                }
+
+                inputList.forEach(input -> {
+                    joiner.add(MessageFormat.format("{0} {1}",input.getValue(),input.getWordCount()));
+                });
                 return joiner.toString();
             } catch (Exception e) {
-
-
                 return "Calculate Error";
             }
         }
