@@ -16,9 +16,7 @@ public class WordFrequencyGame {
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                String[] arr = splitInputString(inputStr);
-
-                List<Input> inputList = getInputList(arr);
+                List<Input> inputList = getInputList(inputStr.split(""));
 
                 inputList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
 
