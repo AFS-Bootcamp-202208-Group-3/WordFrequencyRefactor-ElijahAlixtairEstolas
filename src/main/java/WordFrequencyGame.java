@@ -14,21 +14,20 @@ public class WordFrequencyGame {
         } else {
 
             try {
-
                 //split the input string with 1 to n pieces of spaces
-                List<Input> inputList = getInputList(splitInputString(inputStr));
-
-
-                StringJoiner joiner = new StringJoiner("\n");
-
-                inputList.forEach(input -> {
-                    joiner.add(MessageFormat.format("{0} {1}",input.getValue(),input.getWordCount()));
-                });
-                return joiner.toString();
+                return generateWordFrequencyString(getInputList(splitInputString(inputStr)));
             } catch (Exception e) {
                 return "Calculate Error";
             }
         }
+    }
+
+    private static String generateWordFrequencyString(List<Input> inputList) {
+        StringJoiner joiner = new StringJoiner("\n");
+        inputList.forEach(input -> {
+            joiner.add(MessageFormat.format("{0} {1}",input.getValue(),input.getWordCount()));
+        });
+        return joiner.toString();
     }
 
     private List<Input> getInputList(String[] inputWordsArray) {
