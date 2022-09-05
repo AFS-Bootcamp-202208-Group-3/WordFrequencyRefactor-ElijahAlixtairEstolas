@@ -16,9 +16,8 @@ public class WordFrequencyGame {
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                List<Input> inputList = getInputList(inputStr.split(""));
+                List<Input> inputList = getInputList(splitInputString(inputStr));
 
-                inputList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
 
                 StringJoiner joiner = new StringJoiner("\n");
 
@@ -39,6 +38,8 @@ public class WordFrequencyGame {
         Map<String, List<Input>> map = getListMap(inputList);
 
         inputList = getUniqueWords(map);
+
+        inputList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
         return inputList;
     }
 
