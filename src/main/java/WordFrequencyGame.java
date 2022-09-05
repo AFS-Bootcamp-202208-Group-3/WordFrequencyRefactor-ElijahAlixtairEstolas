@@ -34,13 +34,17 @@ public class WordFrequencyGame {
     private List<Input> getInputList(String[] inputWordsArray) {
         List<Input> inputList = generateInitialInputList(inputWordsArray);
 
-        //get the map for the next step of sizing the same word
-        Map<String, List<Input>> map = getListMap(inputList);
+        //get the inputListMap for the next step of sizing the same word
+        Map<String, List<Input>> inputListMap = getListMap(inputList);
 
-        inputList = getUniqueWords(map);
+        inputList = getUniqueWords(inputListMap);
 
-        inputList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
+        sortInputList(inputList);
         return inputList;
+    }
+
+    private static void sortInputList(List<Input> inputList) {
+        inputList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
     }
 
     private static List<Input> getUniqueWords(Map<String, List<Input>> map) {
