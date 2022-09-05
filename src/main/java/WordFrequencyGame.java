@@ -48,12 +48,12 @@ public class WordFrequencyGame {
     }
 
     private static List<Input> getUniqueWords(Map<String, List<Input>> map) {
-        List<Input> list = new ArrayList<>();
+        List<Input> uniqueWords = new ArrayList<>();
         for (Map.Entry<String, List<Input>> entry : map.entrySet()){
             Input input = new Input(entry.getKey(), entry.getValue().size());
-            list.add(input);
+            uniqueWords.add(input);
         }
-        return list;
+        return uniqueWords;
     }
 
     private static List<Input> generateInitialInputList(String[] arr) {
