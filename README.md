@@ -1,0 +1,12 @@
+	-Test Protection
+		-Run all tests to make sure that the changes do not affect old impl
+		-If no test, create test first
+	-Find Code Smell
+		-Is any characterstic in the source code that possibly indicaets a deeper problem
+			-NOT bugs
+			-NOT technically incorrect
+	-Refactor Techniques
+	-Baby Step
+		-Do refactoring from easy to complex
+		-Refactor one by one
+		-One refactor with one commit
